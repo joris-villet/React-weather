@@ -1,4 +1,3 @@
-$bg: url('./assets/transparent.png') !default;
 
 .app {
     background: url('https://images.wallpaperscraft.com/image/balls_flying_sky_nature_91285_1920x1080.jpg');
@@ -12,15 +11,7 @@ $bg: url('./assets/transparent.png') !default;
     text-align: center;
     width: 50%;
     float: right;
-    // background-image: $bg;
-    // background-repeat: no-repeat;
-    // background-size: 20%;
-    // background-position: center top 100px;
     height: 500px;
-    // &-form {
-    //     display: flex;
-    //     background: lightgreen;
-    // }
 }
 
 .title {

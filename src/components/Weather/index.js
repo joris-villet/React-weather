@@ -10,7 +10,6 @@ export default function Weather({
     humidity,
     speed
 }) {
-   
 
 
     return (

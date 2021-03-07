@@ -5,13 +5,13 @@ import WeatherForm from './components/WeatherForm';
 import ButtonWeather from './components/ButtonWeather';
 import Title from './components/Title';
 
+
 export default function App() {
 
   const lang = "fr";
   const metric = "metric";
-  const api_key = 'b2410b16c45665306028d71d390884b6';
+  const api_key = process.env.REACT_APP_API_KEY;
 
-  
   const [weathers, setWeathers] = useState([]);
   const [cityName, setCityName] = useState("");
   const [erreur, setErreur] = useState(false);
@@ -21,7 +21,8 @@ export default function App() {
     const weatherBackground = document.querySelector('.weather-image');
     console.log(weatherBackground)
     console.log(weatherDescription)
-    if (weatherDescription === "ciel dégagé") weatherBackground.style.backgroundImage = "url('../public/img/sun.png')";
+    const newBg = "url('./sun.png')";
+    if (weatherDescription === "ciel dégagé") weatherBackground.style.setproperty('--bg', newBg);
   }
 
   const getWeather = async (e) => {

@@ -18,8 +18,12 @@
 }
 
 .weather-image {
-  background: transparent;
-  width: 10%;
+  --bg: url('../../assets/images/sun.png');
+  background-image: var(--bg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 25%;
+  width: 30%;
   height: auto;
 }
 
