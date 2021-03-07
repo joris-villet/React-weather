@@ -1,0 +1,46 @@
+$bg: url('./assets/transparent.png') !default;
+
+.app {
+    background: url('https://images.wallpaperscraft.com/image/balls_flying_sky_nature_91285_1920x1080.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100vh;
+} 
+
+
+.container-weather {
+    text-align: center;
+    width: 50%;
+    float: right;
+    // background-image: $bg;
+    // background-repeat: no-repeat;
+    // background-size: 20%;
+    // background-position: center top 100px;
+    height: 500px;
+    // &-form {
+    //     display: flex;
+    //     background: lightgreen;
+    // }
+}
+
+.title {
+    text-align: center;
+    text-transform: uppercase;
+    margin: 0 13rem 2rem 0;
+    padding-top: 5rem;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: rgb(42, 96, 117);
+}
+
+.weather-name {
+    font-size: 2rem;
+    color: skyblue;
+}
+
+.container-form {
+    display: flex;
+    justify-content: right;
+    align-items: flex-end;
+    margin: 0 8rem 0 0;
+}

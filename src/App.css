@@ -1,0 +1,42 @@
+.app {
+  background: url("https://images.wallpaperscraft.com/image/balls_flying_sky_nature_91285_1920x1080.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100vh;
+}
+
+.container-weather {
+  text-align: center;
+  width: 50%;
+  float: right;
+  height: 500px;
+}
+
+.title {
+  text-align: center;
+  text-transform: uppercase;
+  margin: 0 13rem 2rem 0;
+  padding-top: 5rem;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #2a6075;
+}
+
+.weather-name {
+  font-size: 2rem;
+  color: skyblue;
+}
+
+.container-form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: right;
+      -ms-flex-pack: right;
+          justify-content: right;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  margin: 0 8rem 0 0;
+}
+/*# sourceMappingURL=App.css.map */

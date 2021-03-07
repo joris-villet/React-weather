@@ -1,59 +1,90 @@
-
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import './App.css';
+import Weather from './components/Weather';
+import WeatherForm from './components/WeatherForm';
+import ButtonWeather from './components/ButtonWeather';
+import Title from './components/Title';
 
 export default function App() {
 
-  
-  const cityName = "saint-dizier";
   const lang = "fr";
-  const metric = "metric"
+  const metric = "metric";
   const api_key = 'b2410b16c45665306028d71d390884b6';
+
   
   const [weathers, setWeathers] = useState([]);
-  
-  const getWeather = async () => {
+  const [cityName, setCityName] = useState("");
+  const [erreur, setErreur] = useState(false);
+
+
+  const setBackground = (weatherDescription) => {
+    const weatherBackground = document.querySelector('.weather-image');
+    console.log(weatherBackground)
+    console.log(weatherDescription)
+    if (weatherDescription === "ciel dégagé") weatherBackground.style.backgroundImage = "url('../public/img/sun.png')";
+  }
+
+  const getWeather = async (e) => {
     try {
-      const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=${metric}&appid=${api_key}&lang=${lang} `);
+      e.preventDefault();
+      const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=${metric}&appid=${api_key}&lang=${lang}`);
       const data = await response.json();
       const newData = [];
+      if (data.message) {
+        setErreur(true);
+        setWeathers("");
+        return;
+      }
+      console.log(data)
       newData.push(data);
-      setWeathers(newData)
+      setWeathers(newData);
+      setCityName("");
+      setErreur(false);
+      setBackground(newData[0].weather[0].description);
     }
     catch (error) {
       console.log(error);
     }
   }
 
+  return(
+    <div className="app">
+      <div className="container-weather">
 
-  return (
-    <div className="App">
+        <Title title="Météo React" />
 
-      <header className="App-header"></header>
+        <div className="container-form">
 
+          <WeatherForm
+            cityName={cityName}
+            getCity={(e) => setCityName(e.target.value)}
+          />
 
-      {weathers && weathers.map((weather, index) => (
-        <div key={index}>
-          <h1 className="title">{weather.name}</h1>
-          <p>{weather.sys.country}</p>
-          <p>Taux d'humidité {weather.main.humidity} %</p>
-          <p>Vent {weather.wind.speed} km/h</p>
-          <p className="info">{weather.weather[0].description}</p>
-          
-          <p>Température : <span>{weather.main.temp_max} °</span></p>
+          <ButtonWeather
+            txt="Valider"
+            getWeather={getWeather}
+          />
+
         </div>
-      ))}
 
-      {console.log("type de weather", weathers)}
-      
+        {weathers && weathers.map((weather, index) => (
+          <Weather
+            key={index}
+            name={weather.name}
+            country={weather.sys.country}
+            temperature={Number.parseFloat(weather.main.temp_max).toFixed(1)}
+            description={weather.weather[0].description}
+            humidity={weather.main.humidity}
+            speed={weather.wind.speed}
+          />
+        ))}
 
-      {/* {!weathers && (<div>...loading</div>)} */}
+        {erreur && (<div className="erreur">La ville n'a pas été trouvée</div>)}
 
-      <button onClick={getWeather}>get weather</button>
-        
+        </div>
     </div>
-  );
+  )
+  
 }
 
 
